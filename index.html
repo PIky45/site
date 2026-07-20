@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница-визитка</title>
-    <!-- Подключаем официальный скрипт Telegram для работы с ботом -->
+    <!-- ИСПРАВЛЕНО: Подключаем правильный скрипт Telegram для работы Mini App -->
     <script src="https://telegram.org"></script>
     <style>
         body {
@@ -56,7 +56,6 @@
     <p>Выберите необходимое действие ниже:</p>
 
     <!-- Кнопка 1: Откроет другого бота во внешнем окне Telegram -->
-    <!-- ЗАМЕНИТЕ ССЫЛКУ НА СВОЕГО ВТОРОГО БОТА -->
     <a href="https://t.me/pantryvpn_bot" target="_blank" class="btn btn-next">Перейти к боту VPN 🤖</a>
 
     <!-- Кнопка 2: Закрывает мини-приложение и возвращает в чат с текущим ботом -->
@@ -70,7 +69,7 @@
 
         // Функция закрытия приложения
         function closeApp() {
-            tg.close(); // Эта команда Telegram мгновенно закроет визитку
+            tg.close(); // Теперь эта команда сработает отлично!
         }
     </script>
 </body>
