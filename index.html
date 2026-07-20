@@ -8,8 +8,13 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #000000);
+            /* Устанавливаем изображение на задний фон */
+            background-image: url('https://images-api.com');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Центрируем всё окно строго посередине экрана */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,51 +24,82 @@
             padding: 20px;
             box-sizing: border-box;
             text-align: center;
+            position: relative;
         }
-        h1 { font-size: 24px; margin-bottom: 10px; }
-        p { font-size: 16px; margin-bottom: 30px; opacity: 0.8; }
+
+        /* Затемняющая подложка, чтобы текст и кнопки хорошо читались на фоне картинки */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        /* Контейнер для контента, чтобы он был поверх затемнения */
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        h1 { 
+            font-size: 26px; 
+            margin-bottom: 10px; 
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+        
+        p { 
+            font-size: 16px; 
+            margin-bottom: 30px; 
+            color: #f0f0f0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
         .btn {
             display: block;
             width: 100%;
-            max-width: 280px;
             padding: 15px;
-            margin: 10px 0;
+            margin: 12px 0;
             border: none;
             border-radius: 12px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
-            transition: transform 0.1s ease;
-        }
-        .btn:active { transform: scale(0.98); }
-        /* Кнопка перехода к другому боту */
-        .btn-next {
+            box-sizing: border-box;
+            /* Одинаковый синий цвет кнопок для обоих вариантов */
             background-color: #2481cc;
             color: #ffffff;
+            box-shadow: 0 4px 15px rgba(36, 129, 204, 0.4);
+            transition: transform 0.1s ease, background-color 0.2s ease;
         }
-        /* Вторая кнопка (ссылка на купоны) */
-        .btn-link {
-            background-color: var(--tg-theme-secondary-bg-color, #f1f1f1);
-            color: var(--tg-theme-button-color, #2481cc);
+
+        .btn:active { 
+            transform: scale(0.98); 
+            background-color: #1e6fa1;
         }
     </style>
 </head>
 <body>
 
-    <h1>Приветствуем! 👋</h1>
-    <p>Выберите необходимое действие ниже:</p>
+    <div class="content">
+        <h1>Приветствуем! 👋</h1>
+        <p>Выберите необходимое действие ниже:</p>
 
-    <!-- Кнопка 1: Откроет бота VPN -->
-    <a href="https://t.me" target="_blank" class="btn btn-next">Перейти к боту VPN 🤖</a>
+        <!-- Кнопка 1: Откроет бота VPN -->
+        <a href="@pantryvpn_bot" target="_blank" class="btn">Перейти к боту VPN 🤖</a>
 
-    <!-- Кнопка 2: Откроет нужную вам ссылку (вставьте свою вместо https://t.me...) -->
-    <a href=https://t.me/mmynew_bot" target="_blank" class="btn btn-link">Перейти к купонам 🎟️</a>
+        <!-- Кнопка 2: Откроет нужную вам ссылку (замените адрес на свой) -->
+        <a href="@mmynew_bot" target="_blank" class="btn">Перейти к купонам 🎟️</a>
+    </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
-        tg.expand();
+        tg.expand(); // Растягивает окно, чтобы центрирование сработало идеально
     </script>
 </body>
 </html>
